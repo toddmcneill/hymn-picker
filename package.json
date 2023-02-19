@@ -1,0 +1,12 @@
+{
+  "name": "hymn-picker",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:toddmcneill/hymn-picker.git",
+  "author": "Todd McNeill <toddmcneill@gmail.com>",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ]
+}
