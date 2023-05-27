@@ -27,11 +27,22 @@ function formatPickedHymns(pickedHymns) {
   }
 }
 
+function formatPickedHymnsForSheet(pickedHymns) {
+  return [
+    `${pickedHymns.opening.hymnNumber} - ${pickedHymns.opening.title}`,
+    `${pickedHymns.sacrament.hymnNumber} - ${pickedHymns.sacrament.title}`,
+    `${pickedHymns.intermediate.hymnNumber} - ${pickedHymns.intermediate.title}`,
+    `${pickedHymns.closing.hymnNumber} - ${pickedHymns.closing.title}`,
+    `${pickedHymns.dismiss.hymnNumber} - ${pickedHymns.dismiss.title}`,
+  ].join('\n')
+}
+
 async function pickHymns() {
   const hymnData = await loadHymnData()
   const history = await loadHistory()
   const pickedHymns = pickHymnsForWeek(hymnData, history, 1)
-  return formatPickedHymns(pickedHymns)
+  // return formatPickedHymns(pickedHymns)
+  return formatPickedHymnsForSheet(pickedHymns)
 }
 
 module.exports = {

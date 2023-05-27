@@ -3,7 +3,7 @@ const { HymnTypes } = require('./enums')
 const { createHash } = require('./util')
 
 const MAX_CONSIDERATION_DEPTH = 20 // The time complexity is O(n^5), so don't set this much higher than 25
-const FAMILIARITY_TARGET = 0.7
+const FAMILIARITY_TARGET = 0.8
 const LENGTH_TARGET = 14
 
 function pickHymnsForWeek(hymnData, history, weeksOut = 1) {
@@ -43,7 +43,7 @@ function pickHymnsForWeek(hymnData, history, weeksOut = 1) {
             const combinedIndividualRankFactor = getCombinedIndividualRankFactor(hymnList)
             const combinedFamiliarityFactor = getCombinedFamiliarityFactor(hymnList)
             const combinedLengthFactor = getCombinedLengthFactor(hymnList)
-            const combinedHash = hymnList.map(hymn => hymn.hash).join('')
+            // const combinedHash = hymnList.map(hymn => hymn.hash).join('')
 
             combinations.push({
               opening: openingHymn,
