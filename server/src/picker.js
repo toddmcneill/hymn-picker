@@ -3,7 +3,7 @@ const { HymnTypes } = require('./enums')
 const { createHash } = require('./util')
 
 const MAX_CONSIDERATION_DEPTH = 20 // The time complexity is O(n^5), so don't set this much higher than 25
-const FAMILIARITY_TARGET = 0.8
+const FAMILIARITY_TARGET = 0.75
 const LENGTH_TARGET = 14
 
 function pickHymnsForWeek(hymnData, history, weeksOut = 1) {

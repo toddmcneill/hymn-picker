@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const csv = require('csvtojson')
+const dateFns = require('date-fns')
 
 const { pickHymnsForWeek } = require('./picker')
 const { mapHymnData, mapHistory, sortHistory } = require('./parseInput')
@@ -37,14 +38,30 @@ function formatPickedHymnsForSheet(pickedHymns) {
   ].join('\n')
 }
 
+function getNextSundayFormattedDate(weeksOut = 1) {
+  const nextSunday = dateFns.startOfWeek(dateFns.addDays(new Date(), weeksOut * 7))
+  return dateFns.format(nextSunday, 'yyyy-MM-dd')
+}
+
+function formatPickedHymnsForCSV(pickedHymns) {
+  const nextSundayFormattedDate = getNextSundayFormattedDate()
+  return [
+    `${nextSundayFormattedDate},${pickedHymns.opening.hymnNumber},O`,
+    `${nextSundayFormattedDate},${pickedHymns.sacrament.hymnNumber},S`,
+    `${nextSundayFormattedDate},${pickedHymns.intermediate.hymnNumber},I`,
+    `${nextSundayFormattedDate},${pickedHymns.closing.hymnNumber},C`,
+    `${nextSundayFormattedDate},${pickedHymns.dismiss.hymnNumber},D`,
+  ].join('\n')
+}
+
 async function pickHymns() {
   const hymnData = await loadHymnData()
   const history = await loadHistory()
-  const pickedHymns = pickHymnsForWeek(hymnData, history, 1)
-  // return formatPickedHymns(pickedHymns)
-  return formatPickedHymnsForSheet(pickedHymns)
+  return pickHymnsForWeek(hymnData, history, 1)
 }
 
 module.exports = {
-  pickHymns
+  pickHymns,
+  formatPickedHymnsForSheet,
+  formatPickedHymnsForCSV
 }
