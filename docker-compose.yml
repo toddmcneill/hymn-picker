@@ -25,5 +25,9 @@ services:
       DATABASE_URL: postgres://dbuser:dbpass@postgres:5432/app
     command: ./wait-for-it.sh postgres:5432 -- yarn workspace server migrate up
 
+  server:
+    build: .
+    command: yarn workspace server start
+
 volumes:
   db-data:
