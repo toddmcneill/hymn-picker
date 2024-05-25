@@ -2,15 +2,14 @@ const express = require('express')
 
 const router = express.Router()
 
-router.get('/users', async (req, res) => {
-  const users = await req.db.getUsers()
-  res.send(users)
+router.get('/accounts', async (req, res) => {
+  const accounts = await req.db.getAccounts()
+  res.send(accounts)
 })
 
-router.get('/user/:id', async (req, res) => {
-  console.log(req.params)
-  const user = await req.db.getUserById(req.params.id)
-  res.send(user)
+router.get('/account/:id', async (req, res) => {
+  const account = await req.db.getAccountById(req.params.id)
+  res.send(account)
 })
 
 router.get('/hymns', async (req, res) => {

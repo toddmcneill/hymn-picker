@@ -3,7 +3,7 @@
 exports.shorthands = undefined;
 
 exports.up = pgm => {
-  pgm.createTable('user', {
+  pgm.createTable('account', {
     id: {
       type: 'uuid',
       primaryKey: true,
@@ -17,7 +17,7 @@ exports.up = pgm => {
       type: 'uuid',
       primaryKey: true
     },
-    userId: { type: 'uuid' },
+    account_id: { type: 'uuid' },
     year: { type: 'int4' },
     week: { type: 'int4' },
     hymns: { type: 'json' },
@@ -52,7 +52,7 @@ exports.up = pgm => {
       primaryKey: true
     },
     hymnId: { type: 'uuid' },
-    historyId: { type: 'uuid' },
+    history_id: { type: 'uuid' },
     purpose: { type: 'string' },
   })
 };
@@ -61,5 +61,5 @@ exports.down = pgm => {
   pgm.dropTable('hymn_history')
   pgm.dropTable('hymn')
   pgm.dropTable('history')
-  pgm.dropTable('user')
+  pgm.dropTable('account')
 };
