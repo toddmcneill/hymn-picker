@@ -10,15 +10,24 @@ async function getAccountById(id) {
   return rows[0] ? accountToApi(rows[0]) : null
 }
 
-function accountToApi(account) {
+async function createAccount(handle, name, id = randomUUID()) {
+  await query(
+    'INSERT INTO account (id, handle, name) VALUES ($1, $2, $3)',
+    [id, handle, name]
+  )
+  return id
+}
+
+function accountToApi(row) {
   return {
-    id: account.id,
-    handle: account.handle,
-    name: account.name,
+    id: row.id,
+    handle: row.handle,
+    name: row.name,
   }
 }
 
 module.exports = {
   getAccounts,
   getAccountById,
+  createAccount,
 }

@@ -19,7 +19,6 @@ async function test() {
 }
 
 function end() {
-  console.log('closed pool')
   pool.end()
 }
 

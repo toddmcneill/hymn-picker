@@ -20,7 +20,6 @@ exports.up = pgm => {
     account_id: { type: 'uuid' },
     year: { type: 'int4' },
     week: { type: 'int4' },
-    hymns: { type: 'json' },
   })
 
   pgm.createTable('hymn', {
@@ -51,7 +50,7 @@ exports.up = pgm => {
       type: 'uuid',
       primaryKey: true
     },
-    hymnId: { type: 'uuid' },
+    hymn_id: { type: 'uuid' },
     history_id: { type: 'uuid' },
     purpose: { type: 'string' },
   })

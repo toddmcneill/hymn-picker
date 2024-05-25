@@ -99,4 +99,5 @@ function mapLetterToHymnType(letter) {
 module.exports = {
   mapHymnData,
   mapHistory,
+  mapLetterToHymnType,
 }
