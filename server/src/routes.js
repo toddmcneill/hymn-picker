@@ -35,6 +35,9 @@ router.get('/hymns/history/:id', async (req, res) => {
 router.get('/suggestion', async (req, res) => {
   const accountId = '7339bcf3-a99e-4d5b-99d5-39ae76f17cd6' // TODO: pull from auth
   const weeksOut = 1 // TODO: pull optionally from query string
+  const { familiarity } = req.query
+
+  const familiarityTarget = Math.max(Math.min(familiarity, 1), 0.001)
 
   const hymnData = await db.getHymns()
   const history = await db.getHymnHistoryByAccountId(accountId)
@@ -42,7 +45,7 @@ router.get('/suggestion', async (req, res) => {
   const referenceDate = dateFns.addWeeks(Date.now(), weeksOut)
   const { year: referenceYear, week: referenceWeek } = getYearAndWeek(referenceDate)
 
-  const pickedHymns = pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek)
+  const pickedHymns = pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek, familiarityTarget)
   res.send(pickedHymns)
 })
 

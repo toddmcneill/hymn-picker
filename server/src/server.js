@@ -1,5 +1,6 @@
 const express = require('express')
 require('express-async-errors')
+const cors = require('cors')
 const config = require('./config')
 const routes = require('./routes')
 const { end: endDb, test: testDb } = require('./db/connection')
@@ -20,6 +21,9 @@ app.use(async (req, res, next) => {
   req.db = db
   next()
 })
+
+app.use(cors())
+app.options('*', cors())
 
 app.use(routes)
 

@@ -5,7 +5,7 @@ const MAX_CONSIDERATION_DEPTH = 15 // The time complexity is O(n^5), so don't se
 const FAMILIARITY_TARGET = 0.75
 const LENGTH_TARGET = 14
 
-function pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek) {
+function pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek, familiarityTarget = FAMILIARITY_TARGET) {
   // Rank hymns individually for each type
     // Recency - haven't been sung as often are ranked higher
     // Opening hymns should be a moderate to high energy
@@ -39,7 +39,7 @@ function pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek) {
             }
 
             const combinedIndividualRankFactor = getCombinedIndividualRankFactor(hymnList)
-            const combinedFamiliarityFactor = getCombinedFamiliarityFactor(hymnList)
+            const combinedFamiliarityFactor = getCombinedFamiliarityFactor(hymnList, familiarityTarget)
             const combinedLengthFactor = getCombinedLengthFactor(hymnList)
 
             combinations.push({
@@ -72,9 +72,9 @@ function getCombinedIndividualRankFactor(hymns) {
   return hymns.reduce((acc, cur) => acc + cur.rank.overall, 0) / hymns.length
 }
 
-function getCombinedFamiliarityFactor(hymns) {
+function getCombinedFamiliarityFactor(hymns, familiarityTarget) {
   const averageFamiliarity = hymns.reduce((acc, cur) => acc + getFamiliarityFactor(cur.familiarity), 0) / hymns.length
-  return (FAMILIARITY_TARGET - Math.abs(FAMILIARITY_TARGET - averageFamiliarity)) / FAMILIARITY_TARGET
+  return (familiarityTarget - Math.abs(familiarityTarget - averageFamiliarity)) / familiarityTarget
 }
 
 function getCombinedLengthFactor(hymns) {
