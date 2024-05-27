@@ -1,5 +1,5 @@
 const { getRankedHymnsByType, getFamiliarityFactor } = require('./rankHymns')
-const { HymnTypes } = require('./enums')
+const { HymnTypes } = require('../enums')
 
 const MAX_CONSIDERATION_DEPTH = 15 // The time complexity is O(n^5), so don't set this much higher than 25
 const FAMILIARITY_TARGET = 0.75
@@ -43,11 +43,11 @@ function pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek) {
             const combinedLengthFactor = getCombinedLengthFactor(hymnList)
 
             combinations.push({
-              opening: openingHymn,
-              sacrament: sacramentHymn,
-              intermediate: intermediateHymn,
-              closing: closingHymn,
-              dismiss: dismissHymn,
+              [HymnTypes.Opening]: openingHymn,
+              [HymnTypes.Sacrament]: sacramentHymn,
+              [HymnTypes.Intermediate]: intermediateHymn,
+              [HymnTypes.Closing]: closingHymn,
+              [HymnTypes.Dismiss]: dismissHymn,
               rank: {
                 combinedIndividualRankFactor,
                 combinedFamiliarityFactor,

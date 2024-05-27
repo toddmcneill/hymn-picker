@@ -1,4 +1,4 @@
-const { HymnTypes } = require('./enums')
+const { HymnTypes } = require('../enums')
 const dateFns = require('date-fns')
 
 function getRankedHymnsByType(hymnType, hymnData, history, referenceYear, referenceWeek) {

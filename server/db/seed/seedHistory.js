@@ -3,7 +3,6 @@ const path = require('path')
 const dateFns = require('date-fns')
 const dbConnection = require('../../src/db/connection')
 const db = require('../../src/db')
-const { mapLetterToHymnType } = require('../../src/picker/parseInput')
 const { getYearAndWeek } = require('../../src/util')
 
 const ACCOUNT_ID = '7339bcf3-a99e-4d5b-99d5-39ae76f17cd6'
@@ -47,6 +46,17 @@ function fromCsv(row) {
     week,
     hymnNumber: parseInt(row.Number, 10),
     purpose: mapLetterToHymnType(row.HymnType)
+  }
+}
+
+function mapLetterToHymnType(letter) {
+  switch (letter) {
+    case 'O': return HymnTypes.Opening
+    case 'S': return HymnTypes.Sacrament
+    case 'I': return HymnTypes.Intermediate
+    case 'C': return HymnTypes.Closing
+    case 'D': return HymnTypes.Dismiss
+    default: return HymnTypes.Unknown
   }
 }
 
