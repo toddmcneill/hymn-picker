@@ -1,8 +1,9 @@
 const { query } = require('./connection')
+const { createHash } = require('../util')
 
 async function getHymns() {
   const rows = await query('SELECT * FROM hymn')
-  return rows.map(hymnToApi)
+  return rows.map(hymnToApi).sort((a, b) => a.hash < b.hash ? -1 : 1)
 }
 
 async function getHymnsByHistoryId(id) {
@@ -11,7 +12,7 @@ async function getHymnsByHistoryId(id) {
 }
 
 function hymnToApi(row) {
-  return {
+  const hymn = {
     id: row.id,
     number: row.number,
     title: row.title,
@@ -31,6 +32,11 @@ function hymnToApi(row) {
       closing: row.closing,
       dismiss: row.dismiss,
     },
+  }
+
+  return {
+    ...hymn,
+    hash: createHash({ ...hymn, date: Date.now()})
   }
 }
 

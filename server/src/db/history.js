@@ -20,13 +20,24 @@ async function createHymnHistory(hymnId, historyId, purpose) {
 }
 
 async function getHistoryByAccountId(accountId) {
-  const rows = await query('SELECT * FROM history WHERE account_id = $1', [accountId])
+  const rows = await query(
+    'SELECT * FROM history WHERE account_id = $1 ORDER BY year DESC, week DESC',
+    [accountId]
+  )
   return rows.map(historyToApi)
 }
 
-async function getHistoryById(id) {
-  const rows = await query('SELECT * FROM history WHERE id = $1', [id])
-  return rows[0] ? historyToApi(rows[0]) : null
+async function getHymnHistoryByAccountId(accountId) {
+  const rows = await query(`
+    SELECT hymn_history.*, history.year, history.week
+    FROM history
+    JOIN hymn_history
+      ON hymn_history.history_id = history.id
+    WHERE account_id = $1
+    ORDER BY year DESC, week DESC
+  `, [accountId]
+  )
+  return rows.map(hymnHistoryToApi)
 }
 
 function historyToApi(row) {
@@ -38,9 +49,20 @@ function historyToApi(row) {
   }
 }
 
+function hymnHistoryToApi(row) {
+  return {
+    id: row.id,
+    historyId: row.history_id,
+    year: row.year,
+    week: row.week,
+    hymnId: row.hymn_id,
+    purpose: row.purpose,
+  }
+}
+
 module.exports = {
   createHistory,
   createHymnHistory,
   getHistoryByAccountId,
-  getHistoryById,
+  getHymnHistoryByAccountId,
 }

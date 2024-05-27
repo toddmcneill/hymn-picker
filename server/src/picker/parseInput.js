@@ -1,6 +1,6 @@
 const dateFns = require('date-fns')
 const { HymnTypes } = require('./enums')
-const { createHash } = require('./util')
+const { createHash } = require('../util')
 
 function mapHymnData(row) {
   const hymnData = {
@@ -19,7 +19,7 @@ function mapHymnData(row) {
     isSacrament: !!row.Sacrament,
     isFasting: !!row.Fasting,
     isClosing: !!row.Closing,
-    isDismiss: !!row.Dismiss,
+    isDismiss: !!row.Dismiss,a
   }
 
   return {

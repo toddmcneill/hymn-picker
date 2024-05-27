@@ -1,4 +1,8 @@
 const express = require('express')
+const { pickHymnsForWeek } = require('./picker/picker')
+const db = require('./db')
+const dateFns = require('date-fns')
+const { getYearAndWeek } = require('./util')
 
 const router = express.Router()
 
@@ -18,15 +22,28 @@ router.get('/history', async (req, res) => {
   res.send(history)
 })
 
-router.get('/hymns/history/:id', async (req, res) => {
-  const hymns = await req.db.getHymnsByHistoryId(req.params.id)
-  res.send(hymns)
-})
-
 router.get('/hymns', async (req, res) => {
   const hymns = await req.db.getHymns()
   res.send(hymns)
 })
 
+router.get('/hymns/history/:id', async (req, res) => {
+  const hymns = await req.db.getHymnsByHistoryId(req.params.id)
+  res.send(hymns)
+})
+
+router.get('/suggestion', async (req, res) => {
+  const accountId = '7339bcf3-a99e-4d5b-99d5-39ae76f17cd6' // TODO: pull from auth
+  const weeksOut = 1 // TODO: pull optionally from query string
+
+  const hymnData = await db.getHymns()
+  const history = await db.getHymnHistoryByAccountId(accountId)
+
+  const referenceDate = dateFns.addWeeks(Date.now(), weeksOut)
+  const { year: referenceYear, week: referenceWeek } = getYearAndWeek(referenceDate)
+
+  const pickedHymns = pickHymnsForWeek(hymnData, history, referenceYear, referenceWeek)
+  res.send(pickedHymns)
+})
 
 module.exports = router

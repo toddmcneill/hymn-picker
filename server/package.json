@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node --watch src/server.js",
-    "pick": "node src/main.js",
     "migrate": "node-pg-migrate -m db/migrations",
     "seed": "node db/seed/seedHymnData.js && node db/seed/seedAccount.js && node db/seed/seedHistory.js"
   },

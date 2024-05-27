@@ -3,7 +3,8 @@ const path = require('path')
 const dateFns = require('date-fns')
 const dbConnection = require('../../src/db/connection')
 const db = require('../../src/db')
-const { mapLetterToHymnType } = require('../../src/parseInput')
+const { mapLetterToHymnType } = require('../../src/picker/parseInput')
+const { getYearAndWeek } = require('../../src/util')
 
 const ACCOUNT_ID = '7339bcf3-a99e-4d5b-99d5-39ae76f17cd6'
 
@@ -39,9 +40,11 @@ async function seedHistory() {
 
 function fromCsv(row) {
   const date = dateFns.parseISO(row.Date)
+  const { year, week } = getYearAndWeek(date)
+
   return {
-    year: dateFns.getYear(date),
-    week: dateFns.getWeek(date),
+    year,
+    week,
     hymnNumber: parseInt(row.Number, 10),
     purpose: mapLetterToHymnType(row.HymnType)
   }

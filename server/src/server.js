@@ -30,7 +30,7 @@ app.all('*', (req, res) => {
 
 app.use((err, req, res, next) => {
   const message = err.message || 'unknown error'
-  console.error(`Error: ${message}`)
+  console.error(`Error: ${message}`, err)
   res.status(500)
   res.send(message)
 })
