@@ -4,6 +4,7 @@ const dateFns = require('date-fns')
 const dbConnection = require('../../src/db/connection')
 const db = require('../../src/db')
 const { getYearAndWeek } = require('../../src/util')
+const { HymnTypes } = require('../../src/enums')
 
 const ACCOUNT_ID = '7339bcf3-a99e-4d5b-99d5-39ae76f17cd6'
 
