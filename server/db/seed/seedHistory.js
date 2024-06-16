@@ -30,7 +30,11 @@ async function seedHistory() {
   const hymnsByNumber = hymns.reduce((acc, cur) => ({...acc, [cur.number]: cur}), {})
   
   await Promise.all(historyList.map(({ year, week, hymnNumber, purpose }) => {
-    const hymnId = hymnsByNumber[hymnNumber].id
+    const hymnId = hymnsByNumber[hymnNumber]?.id
+    if (!hymnId) {
+      console.warn(`Missing hymn data for ${hymnNumber}`)
+      return
+    }
 
     const historyId = newHistoryIds[uniqueWeeks.findIndex(uniqueWeek => uniqueWeek.year === year && uniqueWeek.week === week)]
 
@@ -65,4 +69,4 @@ console.time('seed history')
 seedHistory().then(() => {
   console.timeEnd('seed history')
   dbConnection.end()
-}).catch(err => console.log(err.message))
+}).catch(err => console.log(err))
