@@ -1,4 +1,5 @@
 const { query } = require('./connection')
+const { randomUUID } = require('crypto')
 
 async function getAccounts() {
   const rows = await query('SELECT * FROM account')

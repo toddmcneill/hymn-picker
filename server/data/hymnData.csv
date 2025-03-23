@@ -1,4 +1,4 @@
-Number,Title,Mood,Length,Familiarity,Limited,Easter,Patriotic,Pioneer,Thanksgiving,Christmas,NewYear,Sacrament,Fasting,Closing,Dismiss
+Number,Title,Mood,Length,Familiarity,Limited,Easter,Patriotic,Pioneer,Thanksgiving,Christmas,NewYear,Sacrament,Fasting,Closing,Dismiss,Children
 1,The Morning Breaks,Triumphantly,4,4,,,,,,,,,,,
 2,The Spirit of God,Exultantly,6,5,,,,,,,,,,,
 3,Now Let Us Rejoice,Cheerfully,3,5,,,,,,,,,,,
@@ -349,7 +349,31 @@ Number,Title,Mood,Length,Familiarity,Limited,Easter,Patriotic,Pioneer,Thanksgivi
 1007,"As Bread Is Broken",0.2,2,4,x,,,,,,,x,,,
 1008,"Bread of Life, Living Water",0.2,3,4,x,,,,,,,x,,,
 1009,"Gethsemane",0.8,3,3,x,,,,,,,,,,
+1010,"Amazing Grace",0.6,2,4,,,,,,,,,,,
+1011,"Hold Hands Around the World",0.8,2,1,,,,,,,,,,,
+1012,"Anytime, Anywhere",0.4,1,1,,,,,,,,,,,
+1013,"God's Gracious Love",0.4,3,1,,,,,,,,,,,
+1014,"My Shepherd Will Supply My Need",0.4,3,3,,,,,,,,,,,
+1015,"Oh, the Deep, Deep Love of Jesus",0.4,2,1,,,,,,,,,,,
+1016,"Behold the Wounds in Jesus' Hands",0.4,4,2,,,,,,,,,,,
+1017,"This is the Christ",0.6,3,4,,,,,,,,,,,
+1018,"Come, Lord Jesus",0.6,2,1,x,x,,,,x,,,,,
+1019,"To Love like Thee",0.2,3,1,,,,,,,,,,,
+1020,"Softly and Tenderly Jesus is Calling",0.8,3,1,,,,,,,,,,,
+1021,"I Know That My Savior Loves Me",0.8,3,2,x,,,,,,,,,,,x
+1022,"Faith in Every Footstep",0.6,3,4,,,,,,,,,,,
+1023,"Standing on the Promises",1,3,1,,,,,,,,,,,
+1024,"I Have Faith in the Lord Jesus Christ",0.8,1,1,x,,,,,,,,,,,x
+1025,"Take My Heart and Let It Be Consecrated",0.6,2,1,,,,,,,,,,,
+1026,"Holy Places",0.6,2,1,x,,,,,,,,,,,x
+1027,"Welcome Home",0.4,3,1,,,,,,,,,,,
+1028,"This Little Light of Mine",1,2,2,x,,,,,,,,,,,x
+1029,"I Can't Count Them All",0.6,2,1,,,,,,,,,,,
+1030,"Close as a Quiet Prayer",0.8,2,1,x,,,,,,,,,,,x
+1031,"Come, Hear the Word the Lord Has Spoken",0.6,2,1,,,,,,,,,,,
 1201,"Hail the Day That Sees Him Rise",1.0,3,1,x,x,,,,,,,,,
 1202,"He Is Born, the Divine Christ Child",1,2,2,x,,,,,x,,,,,
 1203,"What Child Is This",0.6,2,4,x,,,,,x,,,,,
 1204,"Star Bright",0.8,3,1,x,,,,,x,,,,,
+1205,"Let Easter Anthems Ring",0.8,2,1,x,x,,,,,,,,,
+1206,"Were You There?",0.4,3,1,x,x,,,,,,,,,
